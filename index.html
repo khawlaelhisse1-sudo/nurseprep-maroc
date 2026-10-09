@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NursePrep Maroc : plateforme de préparation aux concours de recrutement des infirmiers au Maroc.">
+  <title>NursePrep Maroc | Réussis ton concours</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --primary: #087f8c;
+      --dark: #123047;
+      --light: #f3f8fa;
+      --white: #ffffff;
+      --text: #344054;
+      --border: #e3eaee;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--white);
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .logo span {
+      color: var(--dark);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 14px;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 17px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .primary {
+      background: var(--primary);
+      color: white;
+    }
+    .secondary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .hero {
+      padding: 65px 6%;
+      background: linear-gradient(135deg, #e2f5f5, #f5f9fc);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: 35px;
+    }
+    .badge {
+      display: inline-block;
+      background: #d2efeb;
+      color: #086b70;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+    .hero p {
+      font-size: 17px;
+      max-width: 600px;
+      margin-bottom: 24px;
+    }
+    .hero-card {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px #12304712;
+      text-align: center;
+    }
+    .hero-icon {
+      font-size: 70px;
+      margin-bottom: 12px;
+    }
+    .hero-card h2 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .section {
+      padding: 48px 6%;
+    }
+    .section-title {
+      color: var(--dark);
+      font-size: 29px;
+      margin-bottom: 10px;
+    }
+    .section-desc {
+      margin-bottom: 25px;
+    }
+    .features,
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .feature,
+    .course {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 23px;
+    }
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .feature h3,
+    .course h3 {
+      color: var(--dark);
+      margin-bottom: 9px;
+    }
+    .course p {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .course-tag {
+      display: inline-block;
+      font-size: 12px;
+      background: #e6f5f3;
+      color: #087f8c;
+      border-radius: 5px;
+      padding: 4px 8px;
+      margin-bottom: 12px;
+    }
+    .course button {
+      width: 100%;
+    }
+    .search-box {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d4dfe5;
+      border-radius: 9px;
+      margin: 15px 0 24px;
+      font-size: 15px;
+      background: white;
+    }
+    .notice {
+      padding: 15px;
+      background: #fff8e6;
+      border: 1px solid #f3dfaa;
+      border-radius: 9px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 28px 6%;
+      text-align: center;
+      font-size: 14px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #0008;
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 15px;
+      padding: 25px;
+    }
+    .modal-content h2 {
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #d4dfe5;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .modal-content button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .close {
+      float: right;
+      background: #edf2f5;
+      color: var(--dark);
+    }
+    #message {
+      font-size: 14px;
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 750px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 42px;
+      }
+      .features,
+      .courses {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 15px 5%;
+      }
+      nav {
+        gap: 10px;
+      }
+      .section {
+        padding: 35px 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">🩺 NursePrep <span>Maroc</span></div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#cours">Les cours</a>
+    <a href="#apropos">À propos</a>
+    <button class="secondary" onclick="openModal()">Connexion</button>
+    <button class="primary" onclick="openModal()">Créer un compte</button>
+  </nav>
+</header>
+<main>
+  <section class="hero" id="accueil">
+    <div>
+      <span class="badge">🇲🇦 Préparation aux concours au Maroc</span>
+      <h1>Prépare ton concours infirmier avec confiance.</h1>
+      <p>
+        Retrouve des résumés de cours, des fiches de révision
+        et des ressources pour organiser ta préparation aux
+        concours de recrutement des infirmiers au Maroc.
+      </p>
+      <button class="primary"
+        onclick="document.getElementById('cours').scrollIntoView({behavior:'smooth'})">
+        Découvrir les cours →
+      </button>
+      <button class="secondary" onclick="openModal()">
+        Mon espace
+      </button>
+    </div>
+    <div class="hero-card">
+      <div class="hero-icon">👩‍⚕️📚</div>
+      <h2>Ton espace de révision</h2>
+      <p>Révise à ton rythme et prépare tes prochaines épreuves.</p>
+    </div>
+  </section>
+  <section class="section" id="apropos">
+    <h2 class="section-title">Pourquoi NursePrep Maroc ?</h2>
+    <p class="section-desc">
+      Une plateforme pensée pour faciliter tes révisions.
+    </p>
+    <div class="features">
+      <article class="feature">
+        <div class="feature-icon">📖</div>
+        <h3>Résumés de cours</h3>
+        <p>Des fiches organisées pour faciliter la compréhension et la mémorisation.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">⚖️</div>
+        <h3>Législation</h3>
+        <p>Un espace dédié aux textes juridiques et aux notions essentielles.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">📝</div>
+        <h3>Entraînement</h3>
+        <p>Des QCM et des exercices pourront être ajoutés pour tester tes connaissances.</p>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="cours">
+    <h2 class="section-title">Bibliothèque des cours</h2>
+    <p class="section-desc">
+      Choisis une catégorie pour découvrir les ressources disponibles.
+    </p>
+    <input
+      id="search"
+      class="search-box"
+      type="search"
+      placeholder="🔎 Rechercher un cours..."
+      aria-label="Rechercher un cours"
+      oninput="filterCourses()"
+    >
+    <div class="courses" id="courseList">
+      <article class="course" data-title="santé publique">
+        <span class="course-tag">Santé</span>
+        <h3>Santé publique</h3>
+        <p>Notions fondamentales de santé publique et prévention.</p>
+        <button class="secondary" onclick="showLocked()">Consulter le cours</button>
+      </article>
+      <article class="course" data-title="santé communautaire">
+        <span class="course-tag">Communautaire</span>
+        <h3>Santé communautaire</h3>
+        <p>Promotion de la santé, prévention et approche communautaire.</p>
+        <button class="secondary" onclick="showLocked()">Consulter le cours</button>
+      </article>
+      <article class="course" data-title="épidémiologie">
+        <span class="course-tag">Épidémiologie</span>
+        <h3>Épidémiologie</h3>
+        <p>Indicateurs, surveillance épidémiologique et notions de base.</p>
+        <button class="secondary" onclick="showLocked()">Consulter le cours</button>
+      </article>
+      <article class="course" data-title="législation">
+        <span class="course-tag">Droit</span>
+        <h3>Législation sanitaire</h3>
+        <p>Notions juridiques et textes de référence à réviser.</p>
+        <button class="secondary" onclick="showLocked()">Consulter le cours</button>
+      </article>
+      <article class="course" data-title="soins infirmiers">
+        <span class="course-tag">Soins</span>
+        <h3>Soins infirmiers</h3>
+        <p>Révisions des connaissances fondamentales en soins infirmiers.</p>
+        <button class="secondary" onclick="showLocked()">Consulter le cours</button>
+      </article>
+      <article class="course" data-title="qcm concours">
+        <span class="course-tag">Entraînement</span>
+        <h3>QCM de préparation</h3>
+        <p>Un espace prévu pour les questions d'entraînement au concours.</p>
+        <button class="secondary" onclick="showLocked()">Accéder aux QCM</button>
+      </article>
+    </div>
+    <div class="notice">
+      <strong>Information :</strong> les catégories affichées sont des exemples.
+      Les contenus complets devront être ajoutés et vérifiés avant leur publication.
+    </div>
+  </section>
+</main>
+<footer>
+  <p><strong>NursePrep Maroc</strong></p>
+  <p>Plateforme indépendante de préparation aux concours infirmiers.</p>
+  <p>© <span id="year"></span> NursePrep Maroc — Tous droits réservés.</p>
+</footer>
+<div class="modal" id="loginModal" role="dialog" aria-modal="true"
+  aria-labelledby="modalTitle" onclick="outsideClose(event)">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal()" aria-label="Fermer">✕</button>
+    <h2 id="modalTitle">Bienvenue sur NursePrep Maroc</h2>
+    <p>Connecte-toi ou crée ton compte personnel.</p>
+    <form id="authForm">
+      <input
+        type="email"
+        id="email"
+        placeholder="Adresse e-mail"
+        autocomplete="email"
+        required
+      >
+      <input
+        type="password"
+        id="password"
+        placeholder="Mot de passe (6 caractères minimum)"
+        autocomplete="current-password"
+        minlength="6"
+        required
+      >
+      <button class="primary" type="submit">Se connecter</button>
+      <button class="secondary" type="button" onclick="signUp()">
+        Créer un compte
+      </button>
+      <button class="secondary" type="button" onclick="resetPassword()">
+        Mot de passe oublié ?
+      </button>
+    </form>
+    <p id="message" aria-live="polite"></p>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  /*
+    ÉTAPE SUPABASE :
+    Remplace les deux valeurs ci-dessous par celles de TON projet.
+    Utilise uniquement la clé publique publishable/anon.
+    Ne colle JAMAIS une clé secrète ou service_role dans ce fichier.
+  */
+  const SUPABASE_URL = "COLLE_ICI_URL_SUPABASE";
+  const SUPABASE_KEY = "COLLE_ICI_CLE_PUBLIQUE_SUPABASE";
+  let supabaseClient = null;
+  if (
+    window.supabase &&
+    SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("COLLE_ICI") &&
+    !SUPABASE_KEY.includes("COLLE_ICI")
+  ) {
+    supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+  }
+  function openModal() {
+    document.getElementById("loginModal").style.display = "flex";
+    document.getElementById("message").textContent = "";
+  }
+  function closeModal() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+  function outsideClose(event) {
+    if (event.target.id === "loginModal") closeModal();
+  }
+  function getCredentials() {
+    return {
+      email: document.getElementById("email").value.trim(),
+      password: document.getElementById("password").value
+    };
+  }
+  function showMessage(message) {
+    document.getElementById("message").textContent = message;
+  }
+  async function signUp() {
+    if (!supabaseClient) {
+      showMessage("Configure d'abord l'URL et la clé publique Supabase.");
+      return;
+    }
+    const { email, password } = getCredentials();
+    if (!email || password.length < 6) {
+      showMessage("Entre un e-mail valide et un mot de passe d'au moins 6 caractères.");
+      return;
+    }
+    showMessage("Création du compte en cours...");
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password
+    });
+    if (error) {
+      showMessage(error.message);
+      return;
+    }
+    if (data.session) {
+      showMessage("Compte créé. Tu es connectée.");
+    } else {
+      showMessage("Compte créé. Vérifie ta boîte e-mail pour confirmer l'inscription.");
+    }
+  }
+  document.getElementById("authForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    if (!supabaseClient) {
+      showMessage("Configure d'abord l'URL et la clé publique Supabase.");
+      return;
+    }
+    const { email, password } = getCredentials();
+    showMessage("Connexion en cours...");
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+    if (error) {
+      showMessage("Connexion impossible : " + error.message);
+      return;
+    }
+    showMessage("Connexion réussie : " + data.user.email);
+  });
+  async function resetPassword() {
+    if (!supabaseClient) {
+      showMessage("Configure d'abord Supabase.");
+      return;
+    }
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      showMessage("Entre d'abord ton adresse e-mail.");
+      return;
+    }
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email);
+    if (error) {
+      showMessage(error.message);
+    } else {
+      showMessage("Si cette adresse est enregistrée, tu recevras les instructions par e-mail.");
+    }
+  }
+  function showLocked() {
+    openModal();
+    showMessage("Connecte-toi pour accéder à ton espace. Les contenus payants seront activés après la configuration des accès.");
+  }
+  function filterCourses() {
+    const query = document.getElementById("search").value
+      .toLowerCase()
+      .trim();
+    document.querySelectorAll(".course").forEach(course => {
+      const title = course.dataset.title.toLowerCase();
+      course.style.display = title.includes(query) ? "" : "none";
+    });
+  }
+</script>
+</body>
+</html>
